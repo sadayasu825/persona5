@@ -1,0 +1,2 @@
+class Arcana < ApplicationRecord
+end
