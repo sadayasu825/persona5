@@ -15,7 +15,7 @@ Arcana.create(
     { number: 5, name: '法王' },
     { number: 6, name: '恋愛' },
     { number: 7, name: '戦車' },
-    { number: 8, name: '力' },
+    { number: 8, name: '剛毅' },
     { number: 9, name: '隠者' },
     { number: 10, name: '運命' },
     { number: 11, name: '正義' },
