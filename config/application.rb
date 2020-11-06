@@ -31,5 +31,9 @@ module Persona5
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # set timezone
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
   end
 end
