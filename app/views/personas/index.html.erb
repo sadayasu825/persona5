@@ -1,0 +1,15 @@
+<h1>ペルソナ一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ペルソナ名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @personas.each do |persona| %>
+      <tr>
+        <td><%= link_to "#{persona.name}", "/personas/#{persona.id}", id: persona.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
