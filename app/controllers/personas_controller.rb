@@ -1,6 +1,8 @@
 class PersonasController < ApplicationController
   def index
-    @personas = Persona.all
+    params[:arcana] = nil if params[:arcana].blank?
+    @personas = Persona.search(params)
+    # binding.pry
   end
 
   def show

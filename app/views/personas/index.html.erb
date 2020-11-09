@@ -1,4 +1,17 @@
 <h1>ペルソナ一覧</h1>
+<%= form_with url: '/', local: true, method: 'GET' do |f| %>
+  <div>
+    <p>ペルソナ名</p>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <p>アルカナ名</p>
+    <%= f.select :arcana, Arcana.all.pluck(:name, :number), include_blank: '選択してください' %>
+  </div>
+  <div>
+    <%= f.submit '検索' %>
+  </div>
+<% end %>
 <table>
   <thead>
     <tr>
