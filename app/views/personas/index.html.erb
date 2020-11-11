@@ -2,11 +2,11 @@
 <%= form_with url: '/', local: true, method: 'GET' do |f| %>
   <div>
     <p>ペルソナ名</p>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, value: @search_params[:name]%>
   </div>
   <div>
     <p>アルカナ名</p>
-    <%= f.select :arcana, Arcana.all.pluck(:name, :number), include_blank: '選択してください' %>
+    <%= f.select :arcana, Arcana.all.pluck(:name, :number), include_blank: '選択してください', selected: @search_params[:arcana]%>
   </div>
   <div>
     <%= f.submit '検索' %>
