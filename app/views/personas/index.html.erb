@@ -13,6 +13,13 @@
     <%= f.select :category, Category.all.pluck(:name, :id), include_blank: '選択してください', selected: @search_params[:category] %>
   </div>
   <div>
+    <p>ソート</p>
+    <%= f.radio_button :sort, :arcana, checked: @search_params[:sort] == 'arcana'%>
+    <%= f.label :sort_arcana, 'アルカナ'%>
+    <%= f.radio_button :sort, :level, checked: @search_params[:sort] == 'level'%>
+    <%= f.label :sort_level, '初期レベル'%>
+  </div>
+  <div>
     <%= f.submit '検索' %>
   </div>
 <% end %>

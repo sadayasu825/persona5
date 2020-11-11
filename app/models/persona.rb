@@ -15,6 +15,12 @@ class Persona < ApplicationRecord
     unless params[:category].blank?
       query = query.where(category_id: params[:category])
     end
+    if params[:sort] == 'level'
+      query = query.order(initial_level: 'ASC')
+    else
+      query = query.order(arcana_number: 'ASC')
+                   .order(initial_level: 'ASC')
+    end
     query
   end
 

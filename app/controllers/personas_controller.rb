@@ -3,7 +3,8 @@ class PersonasController < ApplicationController
     @search_params = {
       name: params[:name].blank? ? nil : params[:name],
       arcana: params[:arcana].blank? ? nil : params[:arcana],
-      category: params[:category].blank? ? nil : params[:category]
+      category: params[:category].blank? ? nil : params[:category],
+      sort: params[:sort].blank? ? 'arcana' : params[:sort]
     }
     @personas = Persona.search(@search_params)
   end
