@@ -3,14 +3,17 @@ class Persona < ApplicationRecord
   belongs_to :category
 
   def self.search(params)
-    query = self.select('*')
+    query = self.select('personas.id AS persona_id, personas.name AS name, arcanas.name AS arcana_name, categories.name AS category_name')
                 .joins(:arcana)
                 .joins(:category)
+    unless params[:name].blank?
+      query = query.where('personas.name like ?', "%#{params[:name]}%")
+    end
     unless params[:arcana].blank?
       query = query.where(arcana_number: params[:arcana])
     end
-    unless params[:name].blank?
-      query = query.where('personas.name like ?', "%#{params[:name]}%")
+    unless params[:category].blank?
+      query = query.where(category_id: params[:category])
     end
     query
   end

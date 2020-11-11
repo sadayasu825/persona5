@@ -5,8 +5,12 @@
     <%= f.text_field :name, value: @search_params[:name]%>
   </div>
   <div>
-    <p>アルカナ名</p>
+    <p>アルカナ</p>
     <%= f.select :arcana, Arcana.all.pluck(:name, :number), include_blank: '選択してください', selected: @search_params[:arcana]%>
+  </div>
+  <div>
+    <p>種別</p>
+    <%= f.select :category, Category.all.pluck(:name, :id), include_blank: '選択してください', selected: @search_params[:category] %>
   </div>
   <div>
     <%= f.submit '検索' %>
@@ -16,12 +20,16 @@
   <thead>
     <tr>
       <th>ペルソナ名</th>
+      <th>アルカナ</th>
+      <th>種別</th>
     </tr>
   </thead>
   <tbody>
     <% @personas.each do |persona| %>
       <tr>
-        <td><%= link_to "#{persona.name}", "/personas/#{persona.id}", id: persona.id %></td>
+        <td><%= link_to "#{persona.name}", "/personas/#{persona.persona_id}", id: persona.id %></td>
+        <td><%= "#{persona.arcana_name}" %></td>
+        <td><%= "#{persona.category_name}" %></td>
       </tr>
     <% end %>
   </tbody>
