@@ -3,7 +3,7 @@ class Persona < ApplicationRecord
   belongs_to :category
 
   def self.search(params)
-    query = self.select('personas.id AS persona_id, personas.name AS name, arcanas.name AS arcana_name, categories.name AS category_name')
+    query = self.select('personas.id AS persona_id, personas.name AS name, personas.initial_level AS initial_level, arcanas.name AS arcana_name, categories.name AS category_name')
                 .joins(:arcana)
                 .joins(:category)
     unless params[:name].blank?
@@ -16,5 +16,9 @@ class Persona < ApplicationRecord
       query = query.where(category_id: params[:category])
     end
     query
+  end
+
+  def self.persona_find_by_id(id)
+    Persona.find(id)
   end
 end

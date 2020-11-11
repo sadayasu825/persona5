@@ -1,14 +1,24 @@
 <h1>ペルソナ詳細画面</h1>
+<div>  
+  <div>
+    <h3>ペルソナ名</h3>
+    <%= @persona.name %>
+  </div>
+  <div>
+    <%= image_tag 'sample.png' %>
+  </div>
+</div>
 <table>
   <thead>
     <tr>
-      <th>ペルソナ名</th>
+      <th>スキル</th>
+      <th>習得レベル</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>sss</td>
+      <td>ssss</td>
+    </tr>
   </tbody>
 </table>
-<div>
-  <% persona = Persona.find(params[:id]) %>
-  <p><%= persona.name %></p>
-</div>

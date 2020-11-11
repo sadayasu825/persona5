@@ -9,5 +9,6 @@ class PersonasController < ApplicationController
   end
 
   def show
+    @persona = Persona.persona_find_by_id(params[:id])
   end
 end
