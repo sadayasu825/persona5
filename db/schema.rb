@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_072802) do
+ActiveRecord::Schema.define(version: 2020_11_12_064427) do
 
   create_table "arcanas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "number"
@@ -25,12 +25,28 @@ ActiveRecord::Schema.define(version: 2020_11_06_072802) do
     t.datetime "updated_at"
   end
 
+  create_table "persona_skills", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "persona_id"
+    t.integer "skill_id"
+    t.integer "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "personas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.integer "arcana_number"
-    t.integer "category_id"
+    t.integer "category_id", default: 1
     t.integer "initial_level"
     t.integer "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "skills", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.integer "type"
+    t.string "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
