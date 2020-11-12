@@ -34,7 +34,7 @@ def create_record(ref, persona_name)
   skill_table = detail_doc.css('table.description_table')[1]
   skill_table.css('tbody > tr').each do |tr|
     level_text = tr.css('td')[0].text
-    level =  level_text == '初期' ? 0 : level_text[/\d/].to_i
+    level = level_text == '初期' ? 0 : level_text[/\d+/].to_i
     skill = tr.css('td')[1].text
     skill_name = skill[/【(.*)】/, 1]
     skill_description = skill[/】(.*)/, 1]
