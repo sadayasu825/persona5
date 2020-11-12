@@ -16,9 +16,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>sss</td>
-      <td>ssss</td>
-    </tr>
+    <% @skills.each do |skill| %>
+      <tr>
+        <td><%= skill[:name] %></td>
+        <td><%= skill[:level].zero? ? '初期' : skill[:level] %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

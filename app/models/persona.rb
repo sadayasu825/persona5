@@ -1,6 +1,8 @@
 class Persona < ApplicationRecord
   belongs_to :arcana, primary_key: :number, foreign_key: :arcana_number
   belongs_to :category
+  has_many :persona_skills
+  has_many :skill, through: :persona_skills
 
   def self.search(params)
     query = self.select('personas.id AS persona_id, personas.name AS name, personas.initial_level AS initial_level, arcanas.name AS arcana_name, categories.name AS category_name')
@@ -24,7 +26,16 @@ class Persona < ApplicationRecord
     query
   end
 
-  def self.persona_find_by_id(id)
-    Persona.find(id)
+  def self.find_by_id(id)
+    self.find(id)
+  end
+
+  def self.skills(persona_id)
+    persona_skills_ary = PersonaSkill.where(persona_id: persona_id).pluck(:skill_id, :level)
+    persona_skills = []
+    persona_skills_ary.each do |e|
+      persona_skills << { name: Skill.find(e[0]).name, level: e[1] }
+    end
+    persona_skills
   end
 end

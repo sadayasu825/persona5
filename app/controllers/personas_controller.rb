@@ -10,6 +10,7 @@ class PersonasController < ApplicationController
   end
 
   def show
-    @persona = Persona.persona_find_by_id(params[:id])
+    @persona = Persona.find_by_id(params[:id])
+    @skills = Persona.skills(params[:id])
   end
 end
