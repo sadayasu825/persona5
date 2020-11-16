@@ -1,19 +1,23 @@
-<h1>ペルソナ一覧</h1>
+<h1 class="h3 mb-2 text-gray-800">ペルソナ一覧</h1>
+<div>
 <%= form_with url: '/', local: true, method: 'GET' do |f| %>
   <div>
-    <p>ペルソナ名</p>
+    <p class="mb-4">ペルソナ名
     <%= f.text_field :name, value: @search_params[:name]%>
+    </p>
   </div>
   <div>
-    <p>アルカナ</p>
+    <p class="mb-4">アルカナ
     <%= f.select :arcana, Arcana.all.pluck(:name, :number), include_blank: '選択してください', selected: @search_params[:arcana]%>
+    </p>
   </div>
   <div>
-    <p>種別</p>
+    <p class="mb-4">種別
     <%= f.select :category, Category.all.pluck(:name, :id), include_blank: '選択してください', selected: @search_params[:category] %>
+    </p>
   </div>
   <div>
-    <p>ソート</p>
+    <p class="mb-4">ソート</p>
     <%= f.radio_button :sort, :arcana, checked: @search_params[:sort] == 'arcana'%>
     <%= f.label :sort_arcana, 'アルカナ'%>
     <%= f.radio_button :sort, :level, checked: @search_params[:sort] == 'level'%>
@@ -23,7 +27,8 @@
     <%= f.submit '検索' %>
   </div>
 <% end %>
-<table>
+</div>
+<table  class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
   <thead>
     <tr>
       <th>ペルソナ名</th>
