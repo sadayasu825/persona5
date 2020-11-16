@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_064427) do
+ActiveRecord::Schema.define(version: 2020_11_12_111109) do
 
   create_table "arcanas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "number"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_064427) do
     t.integer "arcana_number"
     t.integer "category_id", default: 1
     t.integer "initial_level"
+    t.string "img_path"
     t.integer "type"
     t.datetime "created_at"
     t.datetime "updated_at"
