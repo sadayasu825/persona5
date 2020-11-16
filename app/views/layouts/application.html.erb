@@ -10,7 +10,60 @@
     <%= stylesheet_pack_tag 'application' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+  <body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tables</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-table"></i>
+                <span>ペルソナ一覧</span></a>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-table"></i>
+                <span>合体結果シミュレーター</span></a>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-table"></i>
+                <span>ペルソナ情報編集</span></a>
+            </li>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <div id="content-wrapper" class="d-flex flex-column">
+
+          <!-- Main Content -->
+          <div id="content">
+            <%= yield %>
+          </div>
+        </div>
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+
+</body>
 </html>
