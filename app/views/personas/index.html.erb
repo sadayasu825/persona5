@@ -40,7 +40,7 @@
             <%= link_to "#{persona.name}", "/personas/#{persona.persona_id}", id: persona.id %>
           </div>
           <div>
-            <%= image_tag 'sample.png', size: '200x100' %>
+            <%= image_tag "#{persona.img_path}", size: '200x100' %>
           </div>
         </td>
         <td><%= persona.arcana_name %></td>

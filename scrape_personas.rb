@@ -2,6 +2,7 @@ require 'active_record'
 require 'active_support/all'
 require 'open-uri'
 require 'nokogiri'
+require 'digest'
 
 Time.zone_default = Time.find_zone! 'Tokyo'
 ActiveRecord::Base.default_timezone = :local
@@ -26,20 +27,33 @@ end
 
 def scrape_persona
   url = 'https://kamigame.jp/P5R/%E3%83%9A%E3%83%AB%E3%82%BD%E3%83%8A/index.html'
+  sleep 1
   doc = Nokogiri::HTML.parse(open(url))
   doc.css('table.wt.pct_10_46_auto > tbody > tr').each do |tr|
-    persona_initial_level = tr.css('td')[0].text
     persona_name = tr.css('td > a')[0].text.strip
-    persona_arcana = tr.css('td > a')[1].text
+    next if Persona.find_by(name: persona_name)
+
+    persona_initial_level = tr.css('td')[0].text
+    persona_arcana = tr.css('td > a')[1].nil? ? '世界' : tr.css('td > a')[1].text
     begin
-      Persona.create(
-        name: persona_name,
-        arcana_number: Arcana.find_by(name: persona_arcana).number,
-        initial_level: persona_initial_level
-      )
+      img_url = tr.at_css('img')[:src].gsub(/w340\Z/, 'w1000')
+      img_path = "/images/#{Digest::MD5.hexdigest(persona_name)}.png"
+      file_path = "/home/sada/デスクトップ/persona5/public#{img_path}"
+      File.open(file_path, 'wb') do |file|
+        sleep 1
+        open(img_url) do |img|
+          file.write(img.read)
+        end
+      end
     rescue
-      next
+      img_path = nil
     end
+    Persona.create(
+      name: persona_name,
+      arcana_number: Arcana.find_by(name: persona_arcana).number,
+      initial_level: persona_initial_level,
+      img_path: img_path
+    )
   end
 end
 

@@ -5,7 +5,7 @@ class Persona < ApplicationRecord
   has_many :skill, through: :persona_skills
 
   def self.search(params)
-    query = self.select('personas.id AS persona_id, personas.name AS name, personas.initial_level AS initial_level, arcanas.name AS arcana_name, categories.name AS category_name')
+    query = self.select('personas.id AS persona_id, personas.name AS name, personas.initial_level AS initial_level, personas.img_path AS img_path, arcanas.name AS arcana_name, categories.name AS category_name')
                 .joins(:arcana)
                 .joins(:category)
     unless params[:name].blank?
