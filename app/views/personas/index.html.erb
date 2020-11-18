@@ -1,6 +1,6 @@
 <h1 class="h3 mb-2 text-gray-800">ペルソナ一覧</h1>
 <div>
-<%= form_with url: '/', local: true, method: 'GET' do |f| %>
+<%= form_with url: personas_path, local: true, method: 'GET' do |f| %>
   <div>
     <p class="mb-4">ペルソナ名
     <%= f.text_field :name, value: @search_params[:name]%>
