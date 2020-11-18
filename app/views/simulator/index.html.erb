@@ -1,2 +1,44 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">ペルソナ合体結果シミュレーター</h1>
+</div>
+<div class="col-xl-12 col-lg-7">
+  <!-- Approach -->
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">ペルソナ合体結果シミュレーターとは？</h6>
+      </div>
+      <div class="card-body">
+          <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
+              CSS bloat and poor page performance. Custom CSS classes are used to create
+              custom components and custom utility classes.</p>
+          <p class="mb-0">Before working with this theme, you should become familiar with the
+              Bootstrap framework, especially the utility classes.</p>
+      </div>
+  </div>
+</div>
+<div class="col-xl-12 col-lg-7">
+  <!-- Approach -->
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">選択フォーム</h6>
+      </div>
+      <div class="card-body">
+        <%= form_with url: simulator_index_path, local: true do |f| %>
+        <div>
+          <p class="mb-4">ペルソナ名1
+          <%= f.select :first_persona, Persona.all.pluck(:name, :id), include_blank: '選択してください' %>
+          </p>
+        </div>
+        <div>
+          <p class="mb-4">ペルソナ名2
+          <%= f.select :second_persona, Persona.all.pluck(:name, :id), include_blank: '選択してください' %>
+          </p>
+        </div>
+        <div>
+          <%= f.submit '合体' %>
+        </div>
+      <% end %>
+      </div>
+  </div>
+</div>
