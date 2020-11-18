@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get '/' => 'personas#index'
-  get '/personas/:id' => 'personas#show'
+  root to: 'home#index'
+  resources :personas, only: [:index, :show]
+  resources :simulator, only: [:index]
 end

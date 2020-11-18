@@ -11,35 +11,20 @@
   </head>
 
   <body id="page-top">
-
-    <!-- Page Wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-table"></i>
-                <span>ペルソナ一覧</span></a>
+              <%= link_to personas_path, class: 'nav-link' do %>
+                <i class="fas fa-fw fa-table"></i><span>ペルソナ一覧</span>
+              <% end %>
             </li>
 
             <hr class="sidebar-divider d-none d-md-block">
 
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-table"></i>
-                <span>合体結果シミュレーター</span></a>
+              <%= link_to simulator_index_path, class: 'nav-link' do%>
+                <i class="fas fa-fw fa-table"></i><span>合体結果シミュレーター</span>
+              <% end %>
             </li>
 
             <hr class="sidebar-divider d-none d-md-block">
@@ -49,21 +34,15 @@
                 <i class="fas fa-fw fa-table"></i>
                 <span>ペルソナ情報編集</span></a>
             </li>
-
         </ul>
         <!-- End of Sidebar -->
 
         <div id="content-wrapper" class="d-flex flex-column">
-
           <!-- Main Content -->
           <div id="content">
             <%= yield %>
           </div>
         </div>
-
     </div>
-    <!-- End of Page Wrapper -->
-
-
 </body>
 </html>
