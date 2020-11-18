@@ -9,11 +9,16 @@
           <h6 class="m-0 font-weight-bold text-primary">ペルソナ合体結果シミュレーターとは？</h6>
       </div>
       <div class="card-body">
-          <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-              CSS bloat and poor page performance. Custom CSS classes are used to create
-              custom components and custom utility classes.</p>
-          <p class="mb-0">Before working with this theme, you should become familiar with the
-              Bootstrap framework, especially the utility classes.</p>
+        <p>「P5R」における「2身ギロチン」合体（融合）において、選択された2体のペルソナの合体結果を出力する機能です。</p>
+        <p>「P5R」における合体法則は以下のとおりです。</p>
+        <ol>
+          <li>合体元ペルソナのアルカナによる組み合わせで誕生するペルソナのアルカナが決まる（以下の表参照）</li>
+          <li>「（1体目元ペルソナ初期レベル + 2体目元ペルソナ初期レベル）÷ 2 + 1」で仮レベルが算出される</li>
+          <li>決定したアルカナと仮レベル以上を満たすペルソナのうち、最も初期レベルの低いペルソナが誕生する</li>
+        </ol>
+        <div class="text-center">
+          <%= image_tag '/p5r2gt.png', class: "img-fluid px-3 px-sm-4 mt-3 mb-4" %>
+        </div>
       </div>
   </div>
 </div>
@@ -24,21 +29,38 @@
           <h6 class="m-0 font-weight-bold text-primary">選択フォーム</h6>
       </div>
       <div class="card-body">
-        <%= form_with url: simulator_index_path, local: true do |f| %>
+        <%= form_with url: simulator_index_path, local: true, method: 'GET' do |f| %>
         <div>
           <p class="mb-4">ペルソナ名1
-          <%= f.select :first_persona, Persona.all.pluck(:name, :id), include_blank: '選択してください' %>
+          <%= f.select :first_persona, Persona.normals.pluck(:name, :id), include_blank: '選択してください', selected: @search_params[:first_persona] %>
           </p>
         </div>
         <div>
           <p class="mb-4">ペルソナ名2
-          <%= f.select :second_persona, Persona.all.pluck(:name, :id), include_blank: '選択してください' %>
+          <%= f.select :second_persona, Persona.normals.pluck(:name, :id), include_blank: '選択してください', selected: @search_params[:second_persona] %>
           </p>
         </div>
         <div>
           <%= f.submit '合体' %>
         </div>
-      <% end %>
+        <% end %>
       </div>
   </div>
 </div>
+<% if @res_persona %>
+<div class="col-xl-12 col-lg-7">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">合体結果</h6>
+    </div>
+    <div class="card-body">
+      <div>
+        <%= @res_persona.name %>
+      </div>
+      <div>
+        <%= image_tag "#{@res_persona.img_path}" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
