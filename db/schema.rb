@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_111109) do
+ActiveRecord::Schema.define(version: 2020_11_18_053554) do
+
+  create_table "arcana_combinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "key_number"
+    t.integer "first_arcana_number"
+    t.integer "second_arcana_number"
+    t.integer "result_arcana_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "arcanas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "number"
@@ -34,6 +43,17 @@ ActiveRecord::Schema.define(version: 2020_11_12_111109) do
   end
 
   create_table "personas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.integer "arcana_number"
+    t.integer "category_id", default: 1
+    t.integer "initial_level"
+    t.string "img_path"
+    t.integer "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personas_org", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.integer "arcana_number"
     t.integer "category_id", default: 1
