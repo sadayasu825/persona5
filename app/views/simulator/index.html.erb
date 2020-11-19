@@ -29,7 +29,7 @@
           <h6 class="m-0 font-weight-bold text-primary">選択フォーム</h6>
       </div>
       <div class="card-body">
-        <%= form_with url: simulator_index_path, local: true, method: 'GET' do |f| %>
+        <%= form_with url: simulator_index_path, id: 'select_form', local: true, method: 'GET' do |f| %>
         <div>
           <p class="mb-4">ペルソナ名1
           <%= f.select :first_persona, Persona.normals.pluck(:name, :id), include_blank: '選択してください', selected: @search_params[:first_persona] %>
@@ -64,3 +64,17 @@
   </div>
 </div>
 <% end %>
+
+<script>
+  function checkPersonaId(event){
+    const first_persona_id = document.getElementById('first_persona').value;
+    const second_persona_id = document.getElementById('second_persona').value;
+    if(first_persona_id == second_persona_id){
+      alert('同じペルソナは選べません')
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+  const form = document.getElementById('select_form');
+  form.addEventListener('submit', checkPersonaId);
+</script>
