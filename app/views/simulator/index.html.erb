@@ -2,13 +2,17 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0 text-gray-800">ペルソナ合体結果シミュレーター</h1>
 </div>
-<div class="col-xl-12 col-lg-7">
+<div class="col-xl-12 col-lg-7" >
   <!-- Approach -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">ペルソナ合体結果シミュレーターとは？</h6>
+        <h6 id="exp-card-header">
+          <i id="card-icon-close" class="fas fa-angle-right fa-lg"></i>
+          <i id="card-icon-open" class="fas fa-angle-down fa-lg"></i>
+          <a href="#" class="m-0 font-weight-bold text-primary">ペルソナ合体結果シミュレーターとは？</a>
+        </h6>
       </div>
-      <div class="card-body">
+      <div id="exp-card-body" class="card-body">
         <p>「P5R」における「2身ギロチン」合体（融合）において、選択された2体のペルソナの合体結果を出力する機能です。</p>
         <p>「P5R」における合体法則は以下のとおりです。</p>
         <ol>
@@ -75,6 +79,32 @@
       event.preventDefault();
     }
   }
+
+  function fold(event){
+    const card_style = document.getElementById("exp-card-body").style;
+    const card_icon_close = document.getElementById("card-icon-close").style;
+    const card_icon_open = document.getElementById("card-icon-open").style;
+    if(card_style.display === 'none') {
+      card_style.display = 'block';
+      card_style.visibility = 'visible';
+      card_icon_close.display = 'none';
+      card_icon_close.visibility = 'hidden';
+      card_icon_open.display = 'inline';
+      card_icon_open.visibility = 'visible';
+    }else{
+      card_style.display = 'none';
+      card_style.visibility = 'hidden';
+      card_icon_close.display = 'inline';
+      card_icon_close.visibility = 'visible';
+      card_icon_open.display = 'none';
+      card_icon_open.visibility = 'hidden';
+    }
+  }
+
   const form = document.getElementById('select_form');
   form.addEventListener('submit', checkPersonaId);
+
+  fold();
+  const exp_card = document.getElementById('exp-card-header');
+  exp_card.addEventListener('click', fold);
 </script>
