@@ -1,57 +1,74 @@
-<h1 class="h3 mb-2 text-gray-800">ペルソナ一覧</h1>
-<div>
-<%= form_with url: personas_path, local: true, method: 'GET' do |f| %>
-  <div>
-    <p class="mb-4">ペルソナ名
-    <%= f.text_field :name, value: @search_params[:name]%>
-    </p>
-  </div>
-  <div>
-    <p class="mb-4">アルカナ
-    <%= f.select :arcana, Arcana.all.pluck(:name, :number), include_blank: '選択してください', selected: @search_params[:arcana]%>
-    </p>
-  </div>
-  <div>
-    <p class="mb-4">種別
-    <%= f.select :category, Category.all.pluck(:name, :id), include_blank: '選択してください', selected: @search_params[:category] %>
-    </p>
-  </div>
-  <div>
-    <p class="mb-4">ソート</p>
-    <%= f.radio_button :sort, :arcana, checked: @search_params[:sort] == 'arcana'%>
-    <%= f.label :sort_arcana, 'アルカナ'%>
-    <%= f.radio_button :sort, :level, checked: @search_params[:sort] == 'level'%>
-    <%= f.label :sort_level, '初期レベル'%>
-  </div>
-  <div>
-    <%= f.submit '検索' %>
-  </div>
-<% end %>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">ペルソナ一覧</h1>
 </div>
-<table  class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-  <thead>
-    <tr>
-      <th>ペルソナ名</th>
-      <th>アルカナ</th>
-      <th>初期レベル</th>
-      <th>種別</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @personas.each do |persona| %>
-      <tr>
-        <td>
-          <div>
-            <%= link_to "#{persona.name}", "/personas/#{persona.persona_id}", id: persona.id %>
-          </div>
-          <div>
-            <%= image_tag "#{persona.img_path}", size: '200x100' %>
-          </div>
-        </td>
-        <td><%= persona.arcana_name %></td>
-        <td><%= persona.initial_level %></td>
-        <td><%= persona.category_name %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="col-xl-12 col-lg-7">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">絞り込みフォーム</h6>
+    </div>
+    <div class="card-body">
+      <%= form_with url: personas_path, local: true, method: 'GET' do |f| %>
+        <div>
+          <p class="mb-4">ペルソナ名
+          <%= f.text_field :name, value: @search_params[:name]%>
+          </p>
+        </div>
+        <div>
+          <p class="mb-4">アルカナ
+          <%= f.select :arcana, Arcana.all.pluck(:name, :number), include_blank: '選択してください', selected: @search_params[:arcana]%>
+          </p>
+        </div>
+        <div>
+          <p class="mb-4">種別
+          <%= f.select :category, Category.all.pluck(:name, :id), include_blank: '選択してください', selected: @search_params[:category] %>
+          </p>
+        </div>
+        <div>
+          <p class="mb-4">ソート</p>
+          <%= f.radio_button :sort, :arcana, checked: @search_params[:sort] == 'arcana'%>
+          <%= f.label :sort_arcana, 'アルカナ'%>
+          <%= f.radio_button :sort, :level, checked: @search_params[:sort] == 'level'%>
+          <%= f.label :sort_level, '初期レベル'%>
+        </div>
+        <div>
+          <%= f.submit '検索' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="col-xl-12 col-lg-7">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>ペルソナ名</th>
+                <th>アルカナ</th>
+                <th>初期レベル</th>
+                <th>種別</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @personas.each do |persona| %>
+                <tr>
+                  <td>
+                    <div>
+                      <%= link_to "#{persona.name}", "/personas/#{persona.persona_id}", id: persona.id %>
+                    </div>
+                    <div>
+                      <%= image_tag "#{persona.img_path}", size: '200x100' %>
+                    </div>
+                  </td>
+                  <td><%= persona.arcana_name %></td>
+                  <td><%= persona.initial_level %></td>
+                  <td><%= persona.category_name %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+</div>
