@@ -1,2 +1,7 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>ようこそ</h1>
+<h3>ここはトップ画面です</h3>
+<% if logged_in? %>
+<p>管理者としてログインしています</p>
+<% else %>
+<p>管理者としてログインすることで編集機能が使えます</p>
+<% end %>
