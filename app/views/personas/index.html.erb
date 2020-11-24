@@ -7,7 +7,7 @@
       <h6 class="m-0 font-weight-bold text-primary">絞り込みフォーム</h6>
     </div>
     <div class="card-body">
-      <%= form_with url: personas_path, local: true, method: 'GET' do |f| %>
+      <%= form_with url: personas_path, method: 'GET' do |f| %>
         <div>
           <p class="mb-4">ペルソナ名
           <%= f.text_field :name, value: @search_params[:name]%>
@@ -31,7 +31,7 @@
           <%= f.label :sort_level, '初期レベル'%>
         </div>
         <div>
-          <%= f.submit '検索' %>
+          <%= f.submit '検索', id: 'submit' %>
         </div>
       <% end %>
     </div>
@@ -50,25 +50,53 @@
                 <th>種別</th>
               </tr>
             </thead>
-            <tbody>
-              <% @personas.each do |persona| %>
-                <tr>
-                  <td>
-                    <div>
-                      <%= link_to "#{persona.name}", "/personas/#{persona.persona_id}", id: persona.id %>
-                    </div>
-                    <div>
-                      <%= image_tag "#{persona.img_path}", size: '200x100' %>
-                    </div>
-                  </td>
-                  <td><%= persona.arcana_name %></td>
-                  <td><%= persona.initial_level %></td>
-                  <td><%= persona.category_name %></td>
-                </tr>
-              <% end %>
+            <tbody id="result">
+              <%= render @personas %>
             </tbody>
           </table>
         </div>
     </div>
   </div>
 </div>
+
+<script>
+  function viewResult(res){
+    $('#result').children().remove();
+    $.each(res, function(index, value){
+      $('#result').append(`
+        <tr>
+          <td>
+            <div>
+              <a href="/personas/${value['persona_id']}">${value['name']}</a>
+            </div>
+            <div>
+              <img src="${value['img_path']}" width="200" height="100">
+          </td>
+          <td>${value['arcana_name']}</td>
+          <td>${value['initial_level']}</td>
+          <td>${value['category_name']}</td>
+        </tr>
+      `);
+    })
+  }
+  $('#submit').on('click', function(event){
+    event.preventDefault;
+    $.ajax({
+      url: '<%= personas_path %>',
+      type: 'GET',
+      data: {
+        name: $('#name').val(),
+        arcana: $('#arcana').val(),
+        category: $('#category').val(),
+        sort: $('input[name=sort]:checked').val()
+      },
+      dataType: 'json'
+    })
+    .done(function(res){
+      viewResult(res);
+    })
+    .fail(function(){
+      alert('error');
+    })
+  })
+</script>

@@ -1,0 +1,13 @@
+<tr>
+  <td>
+    <div>
+      <%= link_to "#{persona.name}", "/personas/#{persona.persona_id}", id: persona.id %>
+    </div>
+    <div>
+      <%= image_tag "#{persona.img_path}", size: '200x100' %>
+    </div>
+  </td>
+  <td><%= persona.arcana_name %></td>
+  <td><%= persona.initial_level %></td>
+  <td><%= persona.category_name %></td>
+</tr>

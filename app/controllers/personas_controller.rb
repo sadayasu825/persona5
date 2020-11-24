@@ -7,6 +7,10 @@ class PersonasController < ApplicationController
       sort: params[:sort].blank? ? 'arcana' : params[:sort]
     }
     @personas = Persona.search(@search_params)
+    respond_to do |format|
+      format.html
+      format.json { render json: @personas }
+    end
   end
 
   def show
