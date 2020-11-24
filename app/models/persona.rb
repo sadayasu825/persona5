@@ -38,7 +38,8 @@ class Persona < ApplicationRecord
     persona_skills_ary = PersonaSkill.where(persona_id: persona_id).pluck(:skill_id, :level)
     persona_skills = []
     persona_skills_ary.each do |e|
-      persona_skills << { name: Skill.find(e[0]).name, level: e[1] }
+      skill = Skill.find(e[0])
+      persona_skills << { name: skill.name, level: e[1], description: skill.description }
     end
     persona_skills
   end
