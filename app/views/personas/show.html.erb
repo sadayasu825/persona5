@@ -16,6 +16,9 @@
 </div>
 <div class="col-xl-12 col-lg-7">
   <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h5 class="m-0 font-weight-bold text-primary">習得スキル</h5>
+    </div>
     <div class="card-body">
       <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -28,7 +31,7 @@
           <tbody>
             <% @skills.each_with_index do |skill, index| %>
               <tr>
-                <td id="skill_<%= index %>" class="skill_name"><%= skill[:name] %></td>
+                <td><span class="skill_name" id="skill_<%= index %>"><%= skill[:name] %></span></td>
                 <td class="skill_level"><%= skill[:level].zero? ? '初期' : skill[:level] %></td>
               </tr>
               <div>
@@ -50,7 +53,7 @@
       const desc_tag = $(`#${$(this).attr('id')}_desc`);
       desc_tag.css({
         'left': mouse_x - 300,
-        'top': mouse_y - 570
+        'top': mouse_y - 500
       })
       $(this).css({
         'text-decoration': 'underline'
