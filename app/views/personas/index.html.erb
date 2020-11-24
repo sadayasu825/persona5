@@ -7,7 +7,7 @@
       <h6 class="m-0 font-weight-bold text-primary">絞り込みフォーム</h6>
     </div>
     <div class="card-body">
-      <%= form_with url: personas_path, method: 'GET' do |f| %>
+      <%= form_with url: personas_path, method: 'GET', local: true do |f| %>
         <div>
           <p class="mb-4">ペルソナ名
           <%= f.text_field :name, value: @search_params[:name]%>
@@ -80,7 +80,7 @@
     })
   }
   $('#submit').on('click', function(event){
-    event.preventDefault;
+    event.preventDefault();
     $.ajax({
       url: '<%= personas_path %>',
       type: 'GET',
