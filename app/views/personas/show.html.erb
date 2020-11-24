@@ -1,26 +1,40 @@
-<h1>ペルソナ詳細画面</h1>
-<div>  
-  <div>
-    <h3>ペルソナ名</h3>
-    <%= @persona.name %>
-  </div>
-  <div>
-    <%= image_tag "#{@persona.img_path}" %>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">ペルソナ詳細画面</h1>
+</div>
+<div class="col-xl-12 col-lg-7">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h4 class="m-0 font-weight-bold text-primary">
+        (<%= @persona.arcana.name %>)
+        <%= @persona.name %>
+      </h4>
+    </div>
+    <div class="card-body"> 
+      <%= image_tag "#{@persona.img_path}" %>
+    </div>
   </div>
 </div>
-<table>
-  <thead>
-    <tr>
-      <th>スキル</th>
-      <th>習得レベル</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @skills.each do |skill| %>
-      <tr>
-        <td><%= skill[:name] %></td>
-        <td><%= skill[:level].zero? ? '初期' : skill[:level] %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="col-xl-12 col-lg-7">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>スキル</th>
+              <th>習得レベル</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @skills.each do |skill| %>
+              <tr>
+                <td><%= skill[:name] %></td>
+                <td><%= skill[:level].zero? ? '初期' : skill[:level] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
