@@ -1,0 +1,2 @@
+module EditAllHelper
+end
