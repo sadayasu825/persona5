@@ -15,12 +15,12 @@
         </div>
         <div>
           <p class="mb-4">アルカナ
-          <%= f.select :arcana, Arcana.all.pluck(:name, :number), include_blank: '選択してください', selected: @search_params[:arcana]%>
+          <%= f.select :arcana, arcana_for_select, include_blank: '選択してください', selected: @search_params[:arcana]%>
           </p>
         </div>
         <div>
           <p class="mb-4">種別
-          <%= f.select :category, Category.all.pluck(:name, :id), include_blank: '選択してください', selected: @search_params[:category] %>
+          <%= f.select :category, category_for_select, include_blank: '選択してください', selected: @search_params[:category] %>
           </p>
         </div>
         <div>
