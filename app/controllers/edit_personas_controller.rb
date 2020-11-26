@@ -1,4 +1,6 @@
 class EditPersonasController < ApplicationController
+  before_action :require_login
+
   def index
     @personas = Persona.all
     @arcana_options = Arcana.all.pluck(:name, :number)
@@ -19,5 +21,14 @@ class EditPersonasController < ApplicationController
       flash[:danger] = '変更に失敗しました'
     end
     redirect_to edit_personas_path
+  end
+
+  private
+
+  def require_login
+    unless logged_in?
+      flash[:error] = '管理者としてログインしてください'
+      redirect_to root_path
+    end
   end
 end
