@@ -7,6 +7,10 @@ module ApplicationHelper
     Category.all.pluck(:name, :id)
   end
 
+  def persona_normals_for_select
+    Persona.normals.pluck(:name, :id)
+  end
+
   def form_box_class
     'form-box'
   end

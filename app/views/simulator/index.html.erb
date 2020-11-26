@@ -25,7 +25,7 @@
       </div>
   </div>
 </div>
-<div class="col-xl-12 col-lg-7">
+<div id="select-form-card" class="col-xl-12 col-lg-7">
   <!-- Approach -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">
@@ -35,16 +35,16 @@
         <%= form_with url: simulator_index_path, id: 'select_form', local: true, method: 'GET' do |f| %>
         <div>
           <p class="mb-4">ペルソナ名1
-          <%= f.select :first_persona, Persona.normals.pluck(:name, :id), include_blank: '選択してください', selected: @search_params[:first_persona] %>
+          <%= f.select :first_persona, persona_normals_for_select, include_blank: '選択してください', selected: @search_params[:first_persona] %>
           </p>
         </div>
         <div>
           <p class="mb-4">ペルソナ名2
-          <%= f.select :second_persona, Persona.normals.pluck(:name, :id), include_blank: '選択してください', selected: @search_params[:second_persona] %>
+          <%= f.select :second_persona, persona_normals_for_select, include_blank: '選択してください', selected: @search_params[:second_persona] %>
           </p>
         </div>
         <div>
-          <%= f.submit '合体' %>
+          <%= f.submit '合体', id: 'submit' %>
         </div>
         <% end %>
       </div>
@@ -69,16 +69,6 @@
 <% end %>
 
 <script>
-  function checkPersonaId(event){
-    const first_persona_id = document.getElementById('first_persona').value;
-    const second_persona_id = document.getElementById('second_persona').value;
-    if(first_persona_id == second_persona_id){
-      alert('同じペルソナは選べません')
-      event.stopPropagation();
-      event.preventDefault();
-    }
-  }
-
   function fold(event){
     const card_style = document.getElementById("exp-card-body").style;
     const card_icon_close = document.getElementById("card-icon-close").style;
@@ -100,10 +90,67 @@
     }
   }
 
-  const form = document.getElementById('select_form');
-  form.addEventListener('submit', checkPersonaId);
-
   fold();
   const exp_card = document.getElementById('exp-card-header');
   exp_card.addEventListener('click', fold);
+
+  function validPersonaIds(first_persona_id, second_persona_id){
+    if(!first_persona_id || !second_persona_id){
+      alert('ペルソナを選択してください')
+      return false;
+    }else if(first_persona_id == second_persona_id){
+      alert('同じペルソナは選べません')
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  function startAjax(first_persona_id, second_persona_id){
+    $.ajax({
+      url: '<%= simulator_index_path %>',
+      type: 'GET',
+      data: {
+        first_persona: first_persona_id,
+        second_persona: second_persona_id
+      },
+      datatype: 'json'
+    })
+    .done(function(res){
+      viewFusionResult(res);
+    })
+    .fail(function(){
+      alert('error');
+    })
+  }
+
+  function viewFusionResult(res){
+    $('#result-card').remove();
+    $('#select-form-card').after(`
+      <div id="result-card" class="col-xl-12 col-lg-7">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">合体結果</h6>
+          </div>
+          <div class="card-body">
+            <div>
+              <h4><a href="/personas/${res['id']}" target="_blank" rel="noopener noreferrer">${res['name']}</a></h4>
+            </div>
+            <div>
+              <img src="${res['img_path']}">
+            </div>
+          </div>
+        </div>
+      </div>
+    `)
+  }
+
+  $('#submit').click(function(event){
+    event.preventDefault();
+    const first_persona_id = $('#first_persona').val();
+    const second_persona_id = $('#second_persona').val();
+    if(validPersonaIds(first_persona_id, second_persona_id)){
+      startAjax(first_persona_id, second_persona_id);
+    }
+  })
 </script>

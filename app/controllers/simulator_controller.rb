@@ -9,5 +9,9 @@ class SimulatorController < ApplicationController
     else
       @res_persona = false
     end
+    respond_to do |format|
+      format.json { render json: @res_persona }
+      format.html
+    end
   end
 end
