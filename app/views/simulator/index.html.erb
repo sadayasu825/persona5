@@ -125,8 +125,25 @@
   }
 
   function viewFusionResult(res){
+    console.log(res);
     $('#result-card').remove();
-    $('#select-form-card').after(`
+    if(!res){
+      $('#select-form-card').after(`
+      <div id="result-card" class="col-xl-12 col-lg-7">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">合体結果</h6>
+          </div>
+          <div class="card-body">
+            <div>
+              <h4 style="color: red;">合体不可</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      `)
+    }else{
+      $('#select-form-card').after(`
       <div id="result-card" class="col-xl-12 col-lg-7">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
@@ -142,7 +159,8 @@
           </div>
         </div>
       </div>
-    `)
+      `)
+    }
   }
 
   $('#submit').click(function(event){
