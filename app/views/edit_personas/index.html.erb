@@ -18,7 +18,7 @@
           <tbody>
           <% @personas.each do |persona| %>
             <tr>
-              <%= form_with url: "/edit_all/#{persona.id}", method: 'PATCH', local: true do |f| %>
+              <%= form_with url: "/edit_personas/#{persona.id}", method: 'PATCH', local: true do |f| %>
               <td class="name-td"><%= f.text_field "name_#{persona.id}", {value: persona.name, class: form_box_class} %></td>
               <td class="arcana-td"><%= f.select "arcana_#{persona.id}", @arcana_options, {selected: persona.arcana_number}, {class: form_box_class} %></td>
               <td class="level-td"><%= f.text_field "initial_level_#{persona.id}", {value: persona.initial_level, class: form_box_class} %></td>

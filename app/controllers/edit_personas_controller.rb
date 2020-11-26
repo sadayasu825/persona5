@@ -1,4 +1,4 @@
-class EditAllController < ApplicationController
+class EditPersonasController < ApplicationController
   def index
     @personas = Persona.all
     @arcana_options = Arcana.all.pluck(:name, :number)
@@ -18,6 +18,6 @@ class EditAllController < ApplicationController
     else
       flash[:danger] = '変更に失敗しました'
     end
-    redirect_to edit_all_index_path
+    redirect_to edit_personas_path
   end
 end
