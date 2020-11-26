@@ -58,6 +58,9 @@ doc = Nokogiri::HTML.parse(open(url))
 doc.css('table.wt.pct_10_46_auto > tbody > tr').each do |tr|
   target_element = tr.css('td > a')[0]
   a_href = target_element[:href]
-  persona_name =  target_element.text.strip
-  create_record(a_href, persona_name)
+  persona_name = target_element.text.strip
+  persona_id = Persona.find_by(name: persona_name).id
+  unless PersonaSkill.find_by(persona_id: persona_id)
+    create_record(a_href, persona_name)
+  end
 end
