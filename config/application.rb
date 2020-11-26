@@ -35,5 +35,15 @@ module Persona5
     # set timezone
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
+    config.generators do |g|
+      g.test_framework :rspec,
+        fixtures: false,
+        view_specs: false, 
+        helper_specs: false, 
+        controller_specs: false, 
+        routing_specs: false,
+        request_specs: false,
+        model_specs: false,
+    end
   end
 end
