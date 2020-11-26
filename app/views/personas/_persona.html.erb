@@ -1,7 +1,7 @@
 <tr>
   <td>
     <div>
-      <%= link_to "#{persona.name}", "/personas/#{persona.persona_id}", id: persona.id %>
+      <%= link_to "#{persona.name}", "/personas/#{persona.persona_id}", id: persona.id, target: :_blank, rel: :noopener %>
     </div>
     <div>
       <%= image_tag "#{persona.img_path}", size: '200x100' %>
