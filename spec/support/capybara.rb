@@ -37,7 +37,8 @@ Capybara.register_driver :chrome do |app|
   options.add_argument('disable-infobars')            # インフォバーの表示を無効にする
   options.add_argument('window-size=1280,960')        # ブラウザーのサイズを指定する
   # options.add_argument('user-agent="Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)"') # IE6
-  # options.add_argument('headless') # Headlessモードを有効にする
+  # headless設定
+  options.add_argument('headless')
 
   # ChromeのSPエミュレーションを使用する
   # options.add_emulation(device_name: 'Nexus 5X') # Device Toolbarで選択出来るEmulated Devicesを指定する
