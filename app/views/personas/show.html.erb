@@ -31,11 +31,11 @@
           <tbody>
             <% @skills.each_with_index do |skill, index| %>
               <tr>
-                <td><span class="skill_name" id="skill_<%= index %>"><%= skill[:name] %></span></td>
-                <td class="skill_level"><%= skill[:level].zero? ? '初期' : skill[:level] %></td>
+                <td><span class="skill-name" id="skill_<%= index %>"><%= skill[:name] %></span></td>
+                <td class="skill-level"><%= skill[:level].zero? ? '初期' : skill[:level] %></td>
               </tr>
               <div>
-                <p id="skill_<%= index %>_desc" class="skill_description"><%= skill[:description] %></p>
+                <p id="skill_<%= index %>_desc" class="skill-description"><%= skill[:description] %></p>
               </div>
             <% end %>
           </tbody>

@@ -59,7 +59,7 @@
           <!-- Topbar -->
           <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
             <% flash.each do |message_type, message| %>
-                <p style="color: red;"><%= message %></p>
+                <p id="flash-message" style="color: red;"><%= message %></p>
             <% end %>
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
