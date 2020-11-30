@@ -15,7 +15,7 @@
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="persona-list">
           <% @personas.each do |persona| %>
             <tr>
               <%= form_with url: "/edit_personas/#{persona.id}", method: 'PATCH', local: true do |f| %>
