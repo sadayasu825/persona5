@@ -66,12 +66,12 @@
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
                 <% if logged_in? %>
-                  <%= link_to logout_path, class: "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm", method: :delete do %>
+                  <%= link_to logout_path, id: "logout-button",  class: "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm", method: :delete do %>
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
                     ログアウト
                   <% end %>
                 <% else %>
-                  <%= link_to login_path, class: "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" do %>
+                  <%= link_to login_path, id: "login-button", class: "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" do %>
                     <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2"></i>
                     管理者ログイン
                   <% end %>
@@ -93,3 +93,11 @@
   </body>
   <% end %>
 </html>
+
+<script>
+  $('#logout-button').click(function(){
+    if(!confirm('ログアウトしますか？')){
+      return false;
+    }
+  })
+</script>
