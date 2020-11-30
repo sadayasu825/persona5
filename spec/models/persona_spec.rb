@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Persona, type: :model do
+RSpec.describe 'ペルソナモデルテスト', type: :model do
   before do
     FactoryBot.create(:arcana)
     FactoryBot.create(:category)
