@@ -4,7 +4,7 @@ FactoryBot.define do
     arcana_number { 0 }
     category_id { 1 }
     initial_level { 1 }
-    img_path { 'sample_path' }
+    img_path { '/sample.png' }
     type { nil }
   end
 
