@@ -4,7 +4,7 @@
       <%= link_to "#{persona.name}", "/personas/#{persona.persona_id}", class: 'persona-name', target: :_blank, rel: :noopener %>
     </div>
     <div>
-      <%= image_tag "#{persona.img_path}", size: '200x100' %>
+      <%= image_tag "#{aws_s3_path}#{persona.img_path}", size: '200x100' %>
     </div>
   </td>
   <td><%= persona.arcana_name %></td>

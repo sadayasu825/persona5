@@ -14,4 +14,8 @@ module ApplicationHelper
   def form_box_class
     'form-box'
   end
+
+  def aws_s3_path
+    'https://rails-persona5.s3-ap-northeast-1.amazonaws.com'
+  end
 end
