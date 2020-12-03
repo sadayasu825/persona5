@@ -59,4 +59,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # add aws_ec2 to hosts
+  config.hosts << "ec2-18-177-144-179.ap-northeast-1.compute.amazonaws.com"
 end
