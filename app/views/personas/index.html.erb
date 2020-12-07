@@ -70,7 +70,7 @@
               <a class="persona-name" target="_blank" rel="noopener noreferrer" href="/personas/${value['persona_id']}">${value['name']}</a>
             </div>
             <div>
-              <img src="https://rails-persona5.s3-ap-northeast-1.amazonaws.com${value['img_path']}" width="200" height="100">
+              <img src="<%= aws_s3_path %>${value['img_path']}" width="200" height="100">
             </div>
           </td>
           <td>${value['arcana_name']}</td>
